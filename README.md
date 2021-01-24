@@ -8,24 +8,14 @@ Our objective is to compare the quality of the entropy-based method with the met
 
 ## Input data
 
-For this comparison, all the data is available in the data directory. We have data for 8 patients (code composed of two letters and three numbers). For each patient, we study 9 nerves 
+For this comparison, all the data are available in the data directory. We have data for 8 patients (code composed of two letters and three numbers). For each patient, we study 9 nerves : III, V, NF and NF are separated in two parts (example : IIID for right hemisphere, IIIG for left hemisphere).
 
 | Nerve definition | Optic          | Oculomotor          | Trigeminal          | Facial and Vestibulocochlear          | Mixte          |
 | ------------------ | ------------- | -------------------- | ------------------ | --------------------------------------- | ------------- |
-| Abbreviation      | Chiasma     | III                          | V                        | NF                                                   | NM              |
+| Nerve abbreviation | Chiasma | III                         | V                        | NF                                                   | NM              |
 | Diameter (mm)  | 10                | 5                          | 7                         | 3                                                     | 2                  |
 
-
-
-
-
-
-
-
-
-
-
-In table X is presented the available nerves for each patient.
+A few nerve are not available. In table X are presented the available nerves for each patient.
 
 |                     | AS012          | BF009          | BM013          | CE008          | GF006          | MG007          | MV011          | SF010          |
 | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | 
@@ -40,18 +30,28 @@ In table X is presented the available nerves for each patient.
 | VG                | V                 | V                   | V                   | V                   | V                  | V                    | V                   | V                    |
 
 
+For each patient, we have :
+
+- fa.mif (or fa.nii), a 3D-image containing the fractional anisotropy of the fibre
+- fod.mif (of fod.nii), a 3D-image containing the spherical harmonics of the fibre orientation distributions
+- eddy_corrected_dti.mif, a 3D-image corresponding to the result of the diffusion MRI
+- for each nerve :
+    - Ground_Truth.tck and Ground_Truth_vox.tck, corresponding to tracks files realised by the expert with the optimal parameters, respectively in millimeters and voxels. We will use it as ground truth for the evaluation
+    - for each parameter and each condition of this parameter, Tracks.tck and Tracks_vox.tck, corresponding to tracks files realised with the non-optimal parameters, respectively in millimeters and voxels. (table X)
+
+| Parameters                       | Value 1          | Value 2          | Value 3          | Value 4          | Value 5          |
+| ----------------------------- | -------------- | -------------- | --------------- | ---------------- | --------------- |
+| FA threshold                     | oFA               | oFA-0.03      | oFA-0.06       | oFA-0.1           | -                    | 
+| ROI size                            | oROIs           | oROIs+D/5   | oROIs+2D/5  | oROIs+3D/5   | oROIs+4D/5  |
+| ROI vertical translation     | oROIl-2D/5   | oROIl-D/5     | oROIl            | oROIl+D/5       | oROIl+2D/5  |
+| ROI horizontal translation | oROIl-2D/5   | oROIl-D/5     | oROIl            | oROIl+D/5       | oROIl+2D/5  | 
 
 
 
 
 
-The input data taken by this code is a file of tractography fibers produced by a tractography software. The format of the data can be **Mrtrix tck file** or **DSIstudio txt file**. If the fibers were produced by Mrtrix, please make sure to use voxel coordinates. To convert your result to voxel coordinates, you can use the function tckconvert of Mrtrix, as described in the shell script you can find on the *Shell* folder. If you want to add a segmentation to the visualization (e.g. a tumor) it must be provided as a **binary image in nifti format**. The segmentations made using DSIstudio are compatible with the code, but any other segmentation might result in wrong placement. Sample data of tracked cranial nerves and cranial tumor segmentation is provided in the *Data* folder. 
 
-## Filtering
-
-A **filtering algorithm** based on the computation of the entropy of the tractography fibers is proposed. An example of use of this algorithm is given in the *main* file. To perform the filtering, you must first compute the entropy of the fibers using the *Entropy/entropy_matrix* function. 
-
-![](Img/entropy_matrix.png)
+![](Img/pipeline_tracto.jpg)
 
 
 
