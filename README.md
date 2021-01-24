@@ -48,10 +48,43 @@ For each patient, we have :
 
 
 
+## Compute tracks weights
+
+In the code/Python directory, the scripts tcksample.py and tcksift2.py are made to compute the tracks weights.
+
+For each track file (.tck), tcksample (with the option -stat_tck mean) assigns to each track the mean value of fractional anisotropy (FA map provided) corresponding to the voxel crossed by the track.
+
+For each track file (.tck), tcksift2 assigns to each track a value of weight, according to the FOD map provided.
+
+The weight files are .txt files with a scalar value (mainly a bit above 0) for each track. For both FA and FOD, a high value is associated with a track to remove. For each patient, nerve, parameter and condition of this paramater, we already computed the weights txt files, provided as FA_Weights.txt and FOD_Weights.txt.
 
 
 
-![](Img/pipeline_tracto.jpg)
+
+## Compute dice
+
+With the weights previously computed, we can sort the initial tracks and remove the less relevants. For both FA_Weights.txt and FOD_Weights.txt, we sort the weights in decreasing order. We consider that the less relevant tracks have a high weight.
+
+In the code/Matlab directory, the script XXXXX computes the dice between a track file and the ground truth. We initially compute the dice between the initial track file and the ground truth. Then, we remove 1% of the less relevant tracks and recompute the dice. Again, we remove the next 1% of less relevant tracks and recompute the dice. We repete the operation until the removal of all tracks. We save the 100 dice values in the csv files Dice_FA_Filltering.csv and Dice_FOD_Filltering.csv.
+
+
+## Plot dice
+
+In the code/Python directory, the script plot_dice.py plots the evolution of the dice value for all patients, given in parameter the filter_type (FA or FOD), the nerve, the parameter and the condition on the parameter. Here is an example with the nerve IIIG, the parameter FA, and a value of 0.2.
+
+![](img/dice_IIIG_FA_fa_0.2.png)
+
+
+
+
+
+
+
+
+
+
+
+![](img/pipeline_tracto.jpg)
 
 
 
