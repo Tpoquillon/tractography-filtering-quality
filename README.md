@@ -75,6 +75,25 @@ In the code/Python directory, the script plot_dice.py plots the evolution of the
 ![](img/dice_IIIG_FA_fa_0.2.png)
 
 
+## Tracks visualisation
+
+In the code/Matlab directory, the script Visualisation.m enables to generate track files from weights previously calculated. The scripts takes as inputs :
+- Tracks_filename, the initial .tck file with all the tracks generated with non-optimal parameters
+- Weights_filename, which is FA_Weights.txt or FOD_Weights.txt, the weights calculated before.
+- Output_Dir, which is where the output files will be saved.
+
+As ouput, we save, for each percentage of tracks remaining (default 20, 40, 60, 80 and 100), a .tck file with the X% most relevant tracks (track_X.tck) and their corresponding weights in a .txt file (track_X_weight.txt).
+
+To visualise the tracks in Mrtrix, run the following commands in the correct directory :
+```bash
+mrview -load fa.nii -tractography.load Tracks.tck --tractography.tsf_load FA_Weights.txt &
+
+mrview -load fa.nii -tractography.load Ground_Truth.tck -tractography.load FA/track_20.tck -tractography.load FA/track_40.tck -tractography.load FA/track_60.tck -tractography.load FA/track_80.tck -tractography.load FA/track_100.tck -tractography.slab -1 -tractography.lighting 1 &
+```
+
+Here is an example of visualisation for the patient MG007, Chiasma nerve, paramater FA and condition fa_0.2.
+
+![](video_final.mov)
 
 
 
