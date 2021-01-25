@@ -93,7 +93,7 @@ mrview -load fa.nii -tractography.load Ground_Truth.tck -tractography.load FA/tr
 
 Here is an example of visualisation for the patient MG007, Chiasma nerve, paramater FA and condition fa_0.2.
 
-![](video_final.mov)
+![](img/video_final.mov)
 
 
 
