@@ -108,7 +108,7 @@ Here is an example of visualisation for the patient MG007, Chiasma nerve, parama
 
 
 # Folder descrition 
-
+test edit
 ### Datas
 The data folder contains files and folder organise through 4 subfolder levels for Patients, Nerves, Parameters and Conditions. 
 
