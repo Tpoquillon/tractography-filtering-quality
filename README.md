@@ -107,5 +107,37 @@ Here is an example of visualisation for the patient MG007, Chiasma nerve, parama
 
 
 
+# Folders description
+
+Our work is organised in 4 different folders: 
+* Data: with source data and raw results,
+* Experiments: Some specific exemple of tractography filtering and visualisation,
+* Code: The code files to generate and analyse filtering results,
+* Tables of results: The filtering result organise in dataframes
+
+### Data
+Data contain, the folowing files and folder organised in 4 subfolders levels, ( Patients, Nerves, Parameter and Condition):
+
+* (*AS012  BF009 BM013 CE008 GF006 MG007 MV011 SF010*): a folder for each patient studied in wich are:
+
+    * *eddy_corrected.nii, fa.nii, fod.mif*: the IRMd image of the patient, with FA and FOD maps
+
+    * *Chiasma, IIID, IIIG, NFG, NFD, NMG, NMD, VD, VG*: a folder for each nerve group. In wich are:
+
+        * *Ground_Truth_vox.tck, Ground_Truth.tck*: tracks files of the expert tomography for the nerve group (with voxel and absolut coordinates)
+
+        * *FA, ROI_increase, ROI_moveLate, ROI_movePos*: folder for each tomography parameter, in wich are:
+
+            * *V1, V2, V3, V4, V5*: a folder for several of the parameter non-optimal values in wich are:
+
+                * *Tracks.tck, Tracks_vox.tck*: the  tomography files to be filtered (with voxel and absolut coordinates)
+
+                * *FOD_Weights.txt, FA_Weights.txt*:  the FOD ans FA weights, one value for each track in the tracks file,
+
+                * *Dice_FA_Filltering.csv, Dice_FOD_Filltering.csv*: The dice value, for each percentage of ascendent filtering with both the FA and the FOD .
+            
+        
+
+
 
 
