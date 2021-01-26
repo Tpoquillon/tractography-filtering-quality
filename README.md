@@ -110,5 +110,15 @@ Here is an example of visualisation for the patient MG007, Chiasma nerve, parama
 # Folder descrition 
 
 ### Datas
-The data folder contains files and folder organise through 4 subfolder levels for Patients, Nerves, Parameters and Conditions. 
-
+The data folder contains files and folder organise through 4 subfolder levels for Patients, Nerves, Parameters and Values:
+    
+ * *AS012, BF009, BM013, CE008, GF006, MG007, MV011, SF010*: a folder for each patients, each of wich contains:
+     * *eddy_corrected_dti.nii, fa.nii, fod.nii* the 3d brain IRMd image and its extracted FA and FOD maps.
+     * *Chiasma, IIID, IIIG, NFD, NFG NMD, NDG, VD, VG*: a folder for each nerge group, each of wich contains:
+         * *Ground_Truth.tck, Ground_Truth_vox.tck*: the expert tractography tracks files, with voxels ans absoluts coordinates
+         * *FA, ROI_increase, ROI_moveLat, ROI_movePos*: a folder for each tractography parameters, each of wich contains:
+             * *C1, C2, C3, C4, C5* a folder for each value taken by the parameter, each of wich contains
+                 * *Tracks.tck, Tracks_vox*: the tractography tracks files for the patient, the nerve, the parameter and the value, with voxels ans absoluts coordinates
+                 * *FA_Weights.txt, FOD_Weights.txt*: the weight of each track of the tck files for both FOD and FA
+                 * *Dice_FA_Filltering.csv, Dice_FOD_Filltering.csv*: the value for 100 trhreshold (each of wich corespond to deleting 1% of the tracks) of the Sorenson Dice metric
+                
